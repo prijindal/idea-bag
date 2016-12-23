@@ -1,7 +1,8 @@
 {
     "extends": "airbnb/base",
     "plugins": [
-        "react"
+        "react",
+        "react-native"
     ],
     "env": {
         "node": true,
@@ -29,7 +30,7 @@
         "react/no-did-update-set-state": 1,
         "react/no-direct-mutation-state": 1,
         "react/no-multi-comp": 1,
-        "react/no-set-state": 1,
+        # "react/no-set-state": 1,
         "react/no-unknown-property": 1,
         "react/prefer-es6-class": 1,
         "react/prop-types": 1,
@@ -38,8 +39,13 @@
         "react/self-closing-comp": 1,
         "react/sort-comp": 1,
         "react/wrap-multilines": 1,
+        "react-native/no-unused-styles": 2,
+        "react-native/split-platform-components": 2,
+        "react-native/no-inline-styles": 2,
+        "react-native/no-color-literals": 2,
         "id-length": 0,
     },
+    "parser": "babel-eslint",
     "parserOptions": {
       "ecmaFeatures": {
         "jsx": true
