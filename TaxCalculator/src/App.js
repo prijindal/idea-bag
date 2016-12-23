@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { Provider } from 'react-redux';
+import { View } from 'react-native';
+import TaxInput from './components/TaxInput';
+import TaxInfo from './components/TaxInfo';
+import store from './store';
 
 class App extends Component {
-  state = {
-    amount: 0,
-  }
-
-  onChangeText = (value) => {
-    this.setState({
-      amount: value,
-    });
-  }
-
   render() {
-    const { amount } = this.state;
     return (
-      <View>
-        <TextInput
-            keyboardType="numeric"
-            onChangeText={this.onChangeText}
-        />
-        <Text>{amount}</Text>
-      </View>
+      <Provider store={store}>
+        <View>
+          <TaxInput />
+          <TaxInfo />
+        </View>
+      </Provider>
     );
   }
 }
