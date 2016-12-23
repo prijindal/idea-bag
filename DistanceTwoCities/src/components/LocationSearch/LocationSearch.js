@@ -12,10 +12,12 @@ class LocationSearch extends Component {
   }
 
   onPress = (data, details) => {
+    let {place_id} = data
     let {location} = details.geometry
-    let {setStart} = this.props
-    if (!setStart) return ;
-    setStart(location)
+    location.place_id = place_id
+    let {setLocation} = this.props
+    if (!setLocation) return ;
+    setLocation(location)
   }
 
   render() {

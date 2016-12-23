@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import { Provider } from 'react-redux'
 import LocationSearch from './components/LocationSearch'
 import CalculatedDistance from './components/CalculatedDistance'
+import MatrixDistance from './components/MatrixDistance'
 
 import store from './store'
 
@@ -21,6 +22,7 @@ class App extends Component {
           <LocationSearch dispatchKey="start"/>
           <LocationSearch dispatchKey="end"/>
           <CalculatedDistance/>
+          <MatrixDistance />
         </View>
       </Provider>
     )

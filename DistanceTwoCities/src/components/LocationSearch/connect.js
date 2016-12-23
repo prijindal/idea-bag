@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 
 const mapDispatchToProps = (dispatch, {dispatchKey}) => ({
-  setStart: (location) =>
+  setLocation: (location) =>
     dispatch({
       type: `LOCATION/SET`,
       location,

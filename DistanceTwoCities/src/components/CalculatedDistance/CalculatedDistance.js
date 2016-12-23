@@ -11,7 +11,7 @@ class CalculatedDistance extends Component {
     }
     return (
       <View>
-        <Text>{distanceBetweenTwoPoints(start, end)} Km</Text>
+        <Text>Geo Distance: {distanceBetweenTwoPoints(start, end)} Km</Text>
       </View>
     )
   }
