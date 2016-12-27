@@ -1,0 +1,3 @@
+rootProject.name = 'GreatestDenominator'
+
+include ':app'
