@@ -1,9 +1,15 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { AsyncStorage } from 'react-native';
 import reducer from './reducer';
+import firebase from './firebase';
 
-const store = createStore(reducer, undefined, autoRehydrate());
+const enhancer = compose(
+  applyMiddleware(firebase),
+  autoRehydrate(),
+);
+
+const store = createStore(reducer, undefined, enhancer);
 
 persistStore(store, { storage: AsyncStorage }, (err, state) => {
   store.dispatch({
