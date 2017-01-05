@@ -1,7 +1,10 @@
 import { createStore } from 'redux';
+import { AsyncStorage } from 'react-native';
+import { persistStore, autoRehydrate } from 'redux-persist';
 import reducer from './reducer';
 
+const store = createStore(reducer, autoRehydrate());
 
-const store = createStore(reducer);
+persistStore(store, { storage: AsyncStorage });
 
 export default store;

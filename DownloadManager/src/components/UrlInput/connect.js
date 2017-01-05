@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ string }) => ({ string });
+const mapStateToProps = () => ({ });
 
 const mapStateToDispatch = dispatch => ({
-  setText: string =>
+  setText: url =>
     dispatch({
-      type: 'TEXT/SET',
-      string,
+      type: 'DOWNLOADS/NEW',
+      url,
     }),
 });
 

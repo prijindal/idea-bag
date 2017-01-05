@@ -1,22 +1,42 @@
 {
-	"name": "DownloadManager",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"react": "15.4.1",
-		"react-native": "0.39.2"
-	},
-	"devDependencies": {
-		"babel-jest": "18.0.0",
-		"babel-preset-react-native": "1.9.1",
-		"jest": "18.1.0",
-		"react-test-renderer": "15.4.1"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "DownloadManager",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-react-native": "^2.2.1",
+    "net": "^1.0.2",
+    "next-frame": "^0.2.3",
+    "node-uuid": "^1.4.7",
+    "progress": "^1.1.8",
+    "react": "15.4.1",
+    "react-native": "0.39.2",
+    "react-native-elements": "^0.9.0",
+    "react-native-vector-icons": "^3.0.0",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "redux-persist": "^4.0.1",
+    "request": "^2.79.0",
+    "request-progress": "^3.0.0",
+    "url": "^0.11.0",
+    "util": "^0.10.3"
+  },
+  "devDependencies": {
+    "babel-jest": "18.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "18.1.0",
+    "react-test-renderer": "15.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }

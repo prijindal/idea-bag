@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import string from './string';
+import downloads from './downloads';
 
 const reducer = combineReducers({
-  string,
+  downloads,
 });
 
 export default reducer;
