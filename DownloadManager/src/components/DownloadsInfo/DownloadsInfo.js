@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { View, Text } from 'react-native';
+import { List } from 'react-native-elements';
 
 import Download from '../Download';
 
@@ -13,14 +14,14 @@ class DownloadsInfo extends Component {
     return (
       <View>
         {downloads ?
-          <View>
+          <List>
             {downloads.map(download =>
               <Download
                   download={download}
                   key={download.id}
               />,
             )}
-          </View>
+          </List>
           :
           <Text>No Downloads</Text>
         }

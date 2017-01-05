@@ -7,6 +7,7 @@ const download = (state = {}, action) => {
       return Object.assign({}, state, {
         progress: 100,
         status: 'COMPLETED',
+        path: action.path,
       });
     }
     return state;

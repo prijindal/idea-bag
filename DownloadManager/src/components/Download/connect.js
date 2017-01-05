@@ -9,10 +9,11 @@ const mapStateToDispatch = (dispatch, { download: { id } }) => ({
       id,
       progress,
     }),
-  setCompleted: () =>
+  setCompleted: path =>
     dispatch({
       type: 'DOWNLOAD/COMPLETE',
       id,
+      path,
     }),
   setAbort: () =>
     dispatch({
