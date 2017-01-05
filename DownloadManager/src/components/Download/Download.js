@@ -1,8 +1,20 @@
 /* global XMLHttpRequest b:true*/
 import React, { Component, PropTypes } from 'react';
-import { Text, View } from 'react-native';
-import { Icon, ListItem } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
+import { TouchableOpacity } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import RNFS from 'react-native-fs';
+
+const gradient = {
+  start: {
+    x: 0,
+    y: 1,
+  },
+  end: {
+    x: 1,
+    y: 1,
+  },
+};
 
 class Download extends Component {
   static propTypes = {
@@ -63,6 +75,13 @@ class Download extends Component {
     this.req.abort();
   }
 
+  onPress = () => {
+    let { status } = this.props.download;
+    if (status === 'DOWNLOADING') {
+      this.abort();
+    }
+  }
+
   render() {
     let { url, progress, status, path } = this.props.download;
     let leftIcon = {
@@ -79,12 +98,25 @@ class Download extends Component {
       let filenameArray = path.split('/');
       filename = filenameArray[filenameArray.length - 1];
     }
+    let colors = ['#ffffff', '#00ff00', '#ffffff'];
+    if (status === 'ABORTED') {
+      colors[1] = '#ff0000';
+    }
     return (
-      <ListItem
-          leftIcon={leftIcon}
-          subtitle={url}
-          title={filename}
-      />
+      <TouchableOpacity onPress={this.onPress}>
+        <LinearGradient
+            colors={colors}
+            end={gradient.end}
+            locations={[0, progress / 100, 0]}
+            start={gradient.start}
+        >
+          <ListItem
+              leftIcon={leftIcon}
+              subtitle={url}
+              title={filename}
+          />
+        </LinearGradient>
+      </TouchableOpacity>
     );
   }
 }
