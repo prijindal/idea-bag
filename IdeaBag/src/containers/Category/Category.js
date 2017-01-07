@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { View, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { NavigationStyles } from '@exponent/ex-navigation';
 import MenuItem from '../../components/MenuItem';
+import CategoryItem from './CategoryItem';
 
 const styles = {
   view: {
@@ -18,53 +20,32 @@ const styles = {
   },
 };
 
-const actions = [
-  {
-    title: 'Bookmarks',
-    iconName: 'bookmark-border',
-    show: 'always',
-  },
-  {
-    title: 'Submit Idea',
-    iconName: 'edit',
-    show: 'always',
-  },
-  {
-    title: 'Help And About',
-    iconName: 'help',
-    show: 'ifRoom',
-  },
-  {
-    title: 'Changelog',
-    iconName: 'help',
-    show: 'ifRoom',
-  },
-];
-
 class Home extends Component {
   static propTypes = {
-    data: PropTypes.arrayOf(MenuItem.propTypes.category),
+    category: MenuItem.propTypes.category,
     navigator: PropTypes.shape(),
   }
 
+  static route = {
+    styles: NavigationStyles.SlideHorizontal,
+  }
+
   render() {
-    let { data } = this.props;
+    let { category } = this.props;
     return (
       <View style={styles.view}>
         <Icon.ToolbarAndroid
-            actions={actions}
             iconColor="#ffffff"
-            onActionSelected={this.onActionSelected}
+            navIconName="arrow-back"
             style={styles.toolbar}
-            title="Idea Bag 2"
+            title={category.categoryLbl}
             titleColor="#ffffff"
         />
         <ScrollView containerStyle={styles.view}>
-          {data.map((category, idx) =>
-            <MenuItem
-                category={category}
-                key={idx}
-                navigator={this.props.navigator}
+          {category.items.map(item =>
+            <CategoryItem
+                item={item}
+                key={item.id}
             />,
           )}
         </ScrollView>

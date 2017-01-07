@@ -50,12 +50,20 @@ class MenuItem extends Component {
       description: PropTypes.string,
       items: PropTypes.arrayOf(PropTypes.object),
     }),
+    navigator: PropTypes.shape({
+      push: PropTypes.func,
+    }),
   }
 
   imageSource() {
     return {
       uri: mapCategoryToImage[this.props.category.categoryLbl],
     };
+  }
+
+  openPage = () => {
+    let { category, navigator } = this.props;
+    navigator.push('category', { category });
   }
 
   render() {
@@ -66,6 +74,8 @@ class MenuItem extends Component {
           avatarStyle={styles.avatar}
           containerStyle={styles.item}
           hideChevron
+          onLongPress={this.openPage}
+          onPress={this.openPage}
           subtitle={
             <View style={styles.subtitle}>
               <Text style={styles.subtitleText}>Ideas: {category.categoryCount}</Text>
@@ -74,6 +84,7 @@ class MenuItem extends Component {
           }
           title={category.categoryLbl}
           titleStyle={styles.itemTitle}
+          underlayColor="#1b2836"
       />
     );
   }
