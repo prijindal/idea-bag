@@ -1,22 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { View, ScrollView } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Layout from '../Layout';
 import MenuItem from '../../components/MenuItem';
-
-const styles = {
-  view: {
-    backgroundColor: '#1b2836',
-    flex: 1,
-    marginTop: 0,
-    padding: 0,
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-  },
-  toolbar: {
-    height: 56,
-    backgroundColor: '#ffb300',
-  },
-};
 
 const actions = [
   {
@@ -50,25 +34,19 @@ class Home extends Component {
   render() {
     let { data } = this.props;
     return (
-      <View style={styles.view}>
-        <Icon.ToolbarAndroid
-            actions={actions}
-            iconColor="#ffffff"
-            onActionSelected={this.onActionSelected}
-            style={styles.toolbar}
-            title="Idea Bag 2"
-            titleColor="#ffffff"
-        />
-        <ScrollView containerStyle={styles.view}>
-          {data.map((category, idx) =>
-            <MenuItem
-                category={category}
-                key={idx}
-                navigator={this.props.navigator}
-            />,
-          )}
-        </ScrollView>
-      </View>
+      <Layout
+          actions={actions}
+          onActionSelected={this.onActionSelected}
+          title="Idea Bag 2"
+      >
+        {data.map((category, idx) =>
+          <MenuItem
+              category={category}
+              key={idx}
+              navigator={this.props.navigator}
+          />,
+        )}
+      </Layout>
     );
   }
 }
