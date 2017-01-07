@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ email, loading }) => ({ email, loading });
+const mapStateToProps = ({ data }) => ({ data });
 
 export default connect(
   mapStateToProps,

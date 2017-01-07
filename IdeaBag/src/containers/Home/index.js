@@ -1,3 +1,4 @@
 import Home from './Home';
+import connect from './connect';
 
-export default Home;
+export default connect(Home);

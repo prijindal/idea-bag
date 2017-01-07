@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import loading from './loading';
+import data from './data';
 
 const reducer = combineReducers({
-  loading,
+  data,
 });
 
 export default reducer;

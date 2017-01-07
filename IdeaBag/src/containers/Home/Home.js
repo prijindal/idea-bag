@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import data from '../../data/output.json';
 import MenuItem from '../../components/MenuItem';
 
 const styles = {
@@ -43,7 +42,12 @@ const actions = [
 ];
 
 class Home extends Component {
+  static propTypes = {
+    data: PropTypes.arrayOf(MenuItem.propTypes.category),
+  }
+
   render() {
+    let { data } = this.props;
     return (
       <View style={styles.view}>
         <Icon.ToolbarAndroid
