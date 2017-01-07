@@ -24,31 +24,51 @@ const styles = {
   },
 };
 
-const actions = [
-  {
-    title: 'Bookmarks',
-    iconName: 'bookmark-border',
-    show: 'always',
-  },
-  {
-    title: 'Share',
-    iconName: 'share',
-    show: 'always',
-  },
-];
-
 class Item extends Component {
   static propTypes = {
     item: PropTypes.shape(),
+    category: PropTypes.shape(),
     navigator: PropTypes.shape(),
+    toggleBookmark: PropTypes.func,
   }
 
   static route = {
     styles: NavigationStyles.SlideHorizontal,
   }
 
+  state = {
+    item: this.props.item,
+  }
+
+  onActionSelected = (index) => {
+    let { toggleBookmark, category } = this.props;
+    let { item } = this.state;
+    if (index === 0) {
+      toggleBookmark(category.categoryLbl, item.id);
+      this.setState({
+        item: Object.assign({}, item, {
+          bookmark: !item.bookmark,
+        }),
+      });
+    } else if (index === 2) {
+      // console.log('Share');
+    }
+  }
+
   render() {
-    let { item } = this.props;
+    let { item } = this.state;
+    const actions = [
+      {
+        title: 'Bookmarks',
+        iconName: item.bookmark ? 'bookmark' : 'bookmark-border',
+        show: 'always',
+      },
+      {
+        title: 'Share',
+        iconName: 'share',
+        show: 'always',
+      },
+    ];
     return (
       <Layout
           actions={actions}

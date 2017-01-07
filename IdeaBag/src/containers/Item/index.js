@@ -1,3 +1,4 @@
 import Item from './Item';
+import connect from './connect';
 
-export default Item;
+export default connect(Item);

@@ -10,14 +10,16 @@ const enhancer = compose(
 
 const store = createStore(reducer, undefined, enhancer);
 
-persistStore(store, { storage: AsyncStorage });
-
-RNFS.readFileAssets('data/output.json')
-.then(result =>
-  store.dispatch({
-    type: 'DATA/INIT',
-    data: JSON.parse(result),
-  }),
-);
+persistStore(store, { storage: AsyncStorage }, (err, stored) => {
+  if (!stored.data || stored.data.length === 0) {
+    RNFS.readFileAssets('data/output.json')
+    .then(result =>
+      store.dispatch({
+        type: 'DATA/INIT',
+        data: JSON.parse(result),
+      }),
+    );
+  }
+});
 
 export default store;

@@ -45,11 +45,12 @@ class CategoryItem extends Component {
     navigator: PropTypes.shape({
       push: PropTypes.func,
     }),
+    category: PropTypes.shape(),
   }
 
   openPage = () => {
-    let { item, navigator } = this.props;
-    navigator.push('item', { item });
+    let { item, category, navigator } = this.props;
+    navigator.push('item', { item, category });
   }
 
   render() {
