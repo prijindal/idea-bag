@@ -48,8 +48,8 @@ class CategoryItem extends Component {
   }
 
   openPage = () => {
-    // let { navigator } = this.props;
-    // navigator.push('category', { category });
+    let { item, navigator } = this.props;
+    navigator.push('item', { item });
   }
 
   render() {

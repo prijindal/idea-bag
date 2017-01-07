@@ -16,16 +16,18 @@ class Home extends Component {
   }
 
   render() {
-    let { category } = this.props;
+    let { category, navigator } = this.props;
     return (
       <Layout
           navIconName="arrow-back"
+          navigator={navigator}
           title={category.categoryLbl}
       >
         {category.items.map(item =>
           <CategoryItem
               item={item}
               key={item.id}
+              navigator={navigator}
           />,
         )}
       </Layout>

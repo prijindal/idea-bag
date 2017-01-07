@@ -24,6 +24,11 @@ class Home extends Component {
     onActionSelected: PropTypes.func,
     title: PropTypes.string,
     navIconName: PropTypes.any,
+    navigator: PropTypes.shape(),
+  }
+
+  onIconClicked = () => {
+    this.props.navigator.pop();
   }
 
   render() {
@@ -35,6 +40,7 @@ class Home extends Component {
             iconColor="#ffffff"
             navIconName={navIconName}
             onActionSelected={onActionSelected}
+            onIconClicked={this.onIconClicked}
             style={styles.toolbar}
             title={title}
             titleColor="#ffffff"
