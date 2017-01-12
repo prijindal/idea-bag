@@ -9,10 +9,22 @@ const enhancer = compose(
 
 const store = createStore(reducer, undefined, enhancer);
 
-persistStore(store, { storage: AsyncStorage }, (err, state) => {
+async function getContacts() {
+  let contacts = await AsyncStorage.getItem('contacts');
+  if (contacts !== null) {
+    contacts = JSON.parse(contacts);
+    store.dispatch({
+      type: 'CONTACTS/SET',
+      contacts,
+    });
+  }
+}
+
+persistStore(store, { blacklist: ['contacts'], storage: AsyncStorage }, (err, state) => {
   store.dispatch({
     type: 'LOADING/OFF',
   });
+  getContacts();
 });
 
 export default store;

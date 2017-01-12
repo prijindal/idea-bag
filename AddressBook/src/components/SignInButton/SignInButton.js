@@ -2,6 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { Text } from 'react-native';
 
+const styles = {
+  button: {
+    width: 120,
+    height: 48,
+  },
+};
+
 class SignInButton extends Component {
   static propTypes = {
     signIn: PropTypes.func,
@@ -48,7 +55,7 @@ class SignInButton extends Component {
           color={GoogleSigninButton.Color.Dark}
           onPress={this.signIn}
           size={GoogleSigninButton.Size.Icon}
-          style={{ width: 120, height: 48 }}
+          style={styles.button}
       />
     );
   }

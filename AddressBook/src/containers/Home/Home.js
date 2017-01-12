@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { ScrollView, View, Text } from 'react-native';
+import { ListView, View, Text, ToastAndroid, AsyncStorage } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import JournalCard from '../../components/JournalCard';
+import Contacts from 'react-native-contacts';
+
+import ContactCard from '../../components/ContactCard';
 
 const styles = {
   toolbar: {
@@ -9,50 +11,72 @@ const styles = {
   },
 };
 
-const actions = [
-  {
-    title: 'Add',
-    iconName: 'md-add',
-    show: 'always',
-  },
-];
-
 class Home extends Component {
   static propTypes = {
-    journals: PropTypes.arrayOf(PropTypes.any),
     navigator: PropTypes.shape({
       push: PropTypes.func,
     }),
+    setContacts: PropTypes.func,
+    contacts: PropTypes.arrayOf(ContactCard.propTypes.contact),
   }
 
-  onActionSelected = (position) => {
-    if (position === 0) {
-      this.props.navigator.push('new');
-    }
+  state = {
+    dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
+  }
+
+  componentDidMount() {
+    Contacts.checkPermission((err, permission) => {
+      if (permission === 'undefined') {
+        Contacts.requestPermission(() => {
+          this.fetchContacts();
+        });
+      } else if (permission === 'authorized') {
+        this.fetchContacts();
+      } else if (permission === 'denied') {
+        ToastAndroid.show('Permission Denied', ToastAndroid.LONG);
+      }
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let { contacts } = nextProps;
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(contacts),
+    });
+  }
+
+  fetchContacts() {
+    Contacts.getAll((err, contacts) => {
+      if (err) {
+        console.error(err);
+      } else {
+        this.props.setContacts(contacts);
+        AsyncStorage.setItem('contacts', JSON.stringify(contacts));
+      }
+    });
   }
 
   render() {
-    let { journals, navigator } = this.props;
+    let { navigator, contacts } = this.props;
     return (
       <View>
         <Icon.ToolbarAndroid
-            actions={actions}
-            onActionSelected={this.onActionSelected}
             style={styles.toolbar}
             title="Home"
         />
         <View>
-          {journals.length === 0 ?
+          {contacts.length === 0 ?
             <Text>No Journal Entries</Text> :
-            <ScrollView>
-              {journals.map(journal =>
-                <JournalCard
-                    journal={journal}
-                    key={journal.id}
+            <ListView
+                dataSource={this.state.dataSource}
+                renderRow={(contact =>
+                <ContactCard
+                    contact={contact}
+                    key={contact.recordID}
                     navigator={navigator}
-                />,
+                />
               )}
-            </ScrollView>
+            />
           }
         </View>
       </View>

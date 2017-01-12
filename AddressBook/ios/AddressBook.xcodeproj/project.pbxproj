@@ -39,6 +39,7 @@
 		621D096BBF6041A98E8D6AC7 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45EF27D9B5F4A3CA03EBE16 /* SafariServices.framework */; };
 		71C343645BEF4F95974DE70D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAAEAEB6F7D94CB88A593ABA /* SystemConfiguration.framework */; };
 		D083F9EC18DC456485A163F3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC75F75E071546F0892BC595 /* AddressBook.framework */; };
+		3B1BB9D79DA04DB9A329F534 /* libRCTContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6A8201CC8B4986A22A4F6E /* libRCTContacts.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,6 +268,8 @@
 		D45EF27D9B5F4A3CA03EBE16 /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		BAAEAEB6F7D94CB88A593ABA /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 		FC75F75E071546F0892BC595 /* AddressBook.framework */ = {isa = PBXFileReference; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		EE195F23C01E4F73872931A8 /* RCTContacts.xcodeproj */ = {isa = PBXFileReference; name = "RCTContacts.xcodeproj"; path = "../node_modules/react-native-contacts/ios/RCTContacts.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EE6A8201CC8B4986A22A4F6E /* libRCTContacts.a */ = {isa = PBXFileReference; name = "libRCTContacts.a"; path = "libRCTContacts.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +302,7 @@
 				621D096BBF6041A98E8D6AC7 /* SafariServices.framework in Frameworks */,
 				71C343645BEF4F95974DE70D /* SystemConfiguration.framework in Frameworks */,
 				D083F9EC18DC456485A163F3 /* AddressBook.framework in Frameworks */,
+				3B1BB9D79DA04DB9A329F534 /* libRCTContacts.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,6 +449,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				18B2DFA8790A4308B1779670 /* RNVectorIcons.xcodeproj */,
 				6CF3C6FE1E7E4CAD9EE98DA4 /* RNGoogleSignin.xcodeproj */,
+				EE195F23C01E4F73872931A8 /* RCTContacts.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -912,6 +917,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -928,6 +934,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AddressBook.app/AddressBook";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

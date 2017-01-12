@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import email from './email';
-import journals from './journals';
+import contacts from './contacts';
 import loading from './loading';
 
 const reducer = combineReducers({
   loading,
+  contacts,
   email,
-  journals,
 });
 
 export default reducer;
