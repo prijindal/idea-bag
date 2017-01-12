@@ -6,7 +6,7 @@ import {
 
 import Router from '../../helpers/router';
 
-class JournalApp extends Component {
+class AddressBookApp extends Component {
   render() {
     return (
       <NavigationProvider router={Router}>
@@ -18,4 +18,4 @@ class JournalApp extends Component {
   }
 }
 
-export default JournalApp;
+export default AddressBookApp;

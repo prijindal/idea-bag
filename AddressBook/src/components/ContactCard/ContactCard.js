@@ -8,17 +8,32 @@ export default class ContactCard extends Component {
     }),
     contact: PropTypes.shape({
       givenName: PropTypes.string,
+      middleName: PropTypes.string,
+      familyName: PropTypes.string,
       thumbnailPath: PropTypes.string,
       phoneNumbers: PropTypes.arrayOf(PropTypes.shape()),
+      hasThumbnail: PropTypes.bool,
     }),
   }
 
+  goToContact = () => {
+    let { contact, navigator } = this.props;
+    navigator.push('contact', { contact });
+  }
+
   render() {
-    let { givenName, thumbnailPath, phoneNumbers } = this.props.contact;
+    let { givenName, middleName, familyName, thumbnailPath, phoneNumbers, hasThumbnail } = this.props.contact;
     let props = {
       title: givenName,
+      onPress: this.goToContact,
     };
-    if (thumbnailPath) {
+    if (middleName) {
+      props.title += ` ${middleName}`;
+    }
+    if (familyName) {
+      props.title += ` ${familyName}`;
+    }
+    if (hasThumbnail) {
       props.avatar = {
         uri: thumbnailPath,
       };

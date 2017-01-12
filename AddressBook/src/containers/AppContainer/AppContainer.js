@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Text } from 'react-native';
 import SignInButton from '../../components/SignInButton';
-import JournalApp from '../../containers/JournalApp';
+import AddressBookApp from '../../containers/AddressBookApp';
 
 class AppContainer extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ class AppContainer extends Component {
     if (!email) {
       return <SignInButton />;
     }
-    return <JournalApp />;
+    return <AddressBookApp />;
   }
 }
 
