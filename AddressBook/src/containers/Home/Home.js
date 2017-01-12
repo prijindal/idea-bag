@@ -1,13 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { ListView, View, Text, ToastAndroid, AsyncStorage } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import Contacts from 'react-native-contacts';
+import { SearchBar } from 'react-native-elements';
 
 import ContactCard from '../../components/ContactCard';
 
 const styles = {
-  toolbar: {
-    height: 56,
+  searchContainer: {
+    backgroundColor: '#fff',
+  },
+  searchInput: {
+    backgroundColor: '#efefef',
+    color: '#212121',
   },
 };
 
@@ -22,6 +26,7 @@ class Home extends Component {
 
   state = {
     dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
+    searchText: '',
   }
 
   componentDidMount() {
@@ -52,7 +57,27 @@ class Home extends Component {
       } else {
         this.props.setContacts(contacts);
         AsyncStorage.setItem('contacts', JSON.stringify(contacts));
+        if (this.state.searchText) {
+          this.onChangeText(this.state.searchText);
+        }
       }
+    });
+  }
+
+  onChangeText = (e) => {
+    let searchText = e.toLowerCase();
+    this.setState({
+      searchText,
+    });
+    let { contacts } = this.props;
+    let results = [];
+    contacts.forEach((contact) => {
+      if (contact.givenName.toLowerCase().indexOf(searchText) >= 0) {
+        results.push(contact);
+      }
+    });
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(results),
     });
   }
 
@@ -60,15 +85,20 @@ class Home extends Component {
     let { navigator, contacts } = this.props;
     return (
       <View>
-        <Icon.ToolbarAndroid
-            style={styles.toolbar}
-            title="Home"
+        <SearchBar
+            containerStyle={styles.searchContainer}
+            inputStyle={styles.searchInput}
+            lightTheme
+            onChangeText={this.onChangeText}
+            placeholder='Search Contacts'
+            round
         />
         <View>
           {contacts.length === 0 ?
             <Text>No Journal Entries</Text> :
             <ListView
                 dataSource={this.state.dataSource}
+                enableEmptySections
                 renderRow={(contact =>
                 <ContactCard
                     contact={contact}

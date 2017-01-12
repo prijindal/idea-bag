@@ -3609,6 +3609,10 @@ react-native-google-signin@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-0.8.1.tgz#7b3c6898aadb2ceb964ebe725a2e85be223ef636"
 
+react-native-send-intent@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/react-native-send-intent/-/react-native-send-intent-1.0.14.tgz#f198434cc041d9546b9f1d31041f719948c49630"
+
 react-native-side-menu@^0.20.1:
   version "0.20.1"
   resolved "https://registry.yarnpkg.com/react-native-side-menu/-/react-native-side-menu-0.20.1.tgz#df21b4bb9d8a1aa3bae53d74ddf8a739eb59bfc5"

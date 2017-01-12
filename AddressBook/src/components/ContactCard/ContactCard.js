@@ -22,7 +22,14 @@ export default class ContactCard extends Component {
   }
 
   render() {
-    let { givenName, middleName, familyName, thumbnailPath, phoneNumbers, hasThumbnail } = this.props.contact;
+    let {
+      givenName,
+      middleName,
+      familyName,
+      thumbnailPath,
+       phoneNumbers,
+       hasThumbnail,
+     } = this.props.contact;
     let props = {
       title: givenName,
       onPress: this.goToContact,

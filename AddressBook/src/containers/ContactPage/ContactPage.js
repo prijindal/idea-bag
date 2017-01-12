@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Text, ScrollView } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { View, ScrollView } from 'react-native';
+import { sendMail, sendPhoneCall } from 'react-native-send-intent';
+import { ListItem } from 'react-native-elements';
 
 const styles = {
   toolbar: {
@@ -16,7 +17,10 @@ export default class ContactPage extends Component {
     }),
     contact: PropTypes.shape({
       givenName: PropTypes.string,
-      phoneNumbers: PropTypes.arrayOf(PropTypes.shape),
+      middleName: PropTypes.string,
+      familyName: PropTypes.string,
+      phoneNumbers: PropTypes.arrayOf(PropTypes.shape()),
+      emailAddresses: PropTypes.arrayOf(PropTypes.shape()),
     }),
   }
 
@@ -25,8 +29,14 @@ export default class ContactPage extends Component {
   }
 
   render() {
-    let { givenName, phoneNumbers } = this.props.contact;
-    // console.log(contact);
+    let { givenName, middleName, familyName, phoneNumbers, emailAddresses } = this.props.contact;
+    let name = givenName;
+    if (middleName) {
+      name += ` ${middleName}`;
+    }
+    if (familyName) {
+      name += ` ${familyName}`;
+    }
     return (
       <ScrollView>
         <Icon.ToolbarAndroid
@@ -35,15 +45,33 @@ export default class ContactPage extends Component {
             style={styles.toolbar}
             title={givenName}
         />
-        <List>
-          {phoneNumbers.map((phoneNumber, idx) =>
-            <ListItem
-                key={idx}
-                subtitle={phoneNumber.number}
-                title={phoneNumber.label}
-            />,
-          )}
-        </List>
+        <ListItem
+            title={name}
+        />
+        {emailAddresses.length > 0 &&
+          <View>
+            {emailAddresses.map((emailAddress, idx) =>
+              <ListItem
+                  key={idx}
+                  onPress={() => sendMail(emailAddress.email)}
+                  subtitle={emailAddress.email}
+                  title={emailAddress.label}
+              />,
+            )}
+          </View>
+        }
+        {phoneNumbers.length > 0 &&
+          <View>
+            {phoneNumbers.map((phoneNumber, idx) =>
+              <ListItem
+                  key={idx}
+                  onPress={() => sendPhoneCall(phoneNumber.number)}
+                  subtitle={phoneNumber.number}
+                  title={phoneNumber.label}
+              />,
+            )}
+          </View>
+        }
       </ScrollView>
     );
   }

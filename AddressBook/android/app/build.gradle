@@ -140,6 +140,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-send-intent')
     compile project(':react-native-contacts')
     compile(project(":react-native-google-signin")){
         exclude group: "com.google.android.gms" // very important
