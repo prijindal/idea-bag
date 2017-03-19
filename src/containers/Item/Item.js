@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Text } from 'react-native';
 import { Card } from 'react-native-elements';
-import { NavigationStyles } from '@exponent/ex-navigation';
-import Layout from '../Layout';
+import Layout from '../../components/Layout';
 
 const styles = {
   container: {
@@ -26,37 +25,23 @@ const styles = {
 
 class Item extends Component {
   static propTypes = {
-    item: PropTypes.shape(),
-    category: PropTypes.shape(),
-    navigator: PropTypes.shape(),
-    toggleBookmark: PropTypes.func,
-  }
-
-  static route = {
-    styles: NavigationStyles.SlideHorizontal,
-  }
-
-  state = {
-    item: this.props.item,
+    item: PropTypes.shape({}).isRequired,
+    navigation: PropTypes.shape({}).isRequired,
+    toggleBookmark: PropTypes.func.isRequired,
   }
 
   onActionSelected = (index) => {
-    let { toggleBookmark, category } = this.props;
-    let { item } = this.state;
+    const { toggleBookmark } = this.props;
     if (index === 0) {
-      toggleBookmark(category.categoryLbl, item.id);
-      this.setState({
-        item: Object.assign({}, item, {
-          bookmark: !item.bookmark,
-        }),
-      });
+      toggleBookmark();
     } else if (index === 2) {
       // console.log('Share');
     }
   }
 
   render() {
-    let { item } = this.state;
+    const { item } = this.props;
+    if (!item) return <Layout />;
     const actions = [
       {
         title: 'Bookmarks',
@@ -71,17 +56,17 @@ class Item extends Component {
     ];
     return (
       <Layout
-          actions={actions}
-          navIconName="arrow-back"
-          navigator={this.props.navigator}
-          onActionSelected={this.onActionSelected}
-          title="Idea Details"
+        actions={actions}
+        enableBackButton
+        navigation={this.props.navigation}
+        onActionSelected={this.onActionSelected}
+        title="Idea Details"
       >
         <Card
-            containerStyle={styles.container}
-            dividerStyle={styles.divider}
-            title={item.title}
-            titleStyle={styles.title}
+          containerStyle={styles.container}
+          dividerStyle={styles.divider}
+          title={item.title}
+          titleStyle={styles.title}
         >
           <Text style={styles.description}>{item.description}</Text>
         </Card>

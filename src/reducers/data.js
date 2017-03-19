@@ -1,8 +1,9 @@
 const itemCategoryHelper = (item, action) => {
   if (item.id === action.item) {
-    return Object.assign({}, item, {
+    return {
+      ...item,
       bookmark: !item.bookmark,
-    });
+    };
   }
   return item;
 };
@@ -18,12 +19,12 @@ const bookmarkCategoryHelper = (category, action) => {
 
 const data = (state = [], action) => {
   switch (action.type) {
-  case 'DATA/INIT':
-    return action.data;
-  case 'DATA/BOOKMARK/TOGGLE':
-    return state.map(item => bookmarkCategoryHelper(item, action));
-  default:
-    return state;
+    case 'DATA/INIT':
+      return action.data;
+    case 'DATA/BOOKMARK/TOGGLE':
+      return state.map(item => bookmarkCategoryHelper(item, action));
+    default:
+      return state;
   }
 };
 

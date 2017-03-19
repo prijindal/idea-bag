@@ -39,41 +39,39 @@ const styles = {
 
 class CategoryItem extends Component {
   static propTypes = {
-    item: PropTypes.shape({
-
-    }),
-    navigator: PropTypes.shape({
+    item: PropTypes.shape({}).isRequired,
+    navigation: PropTypes.shape({
       push: PropTypes.func,
-    }),
-    category: PropTypes.shape(),
+    }).isRequired,
+    category: PropTypes.shape({}).isRequired,
   }
 
   openPage = () => {
-    let { item, category, navigator } = this.props;
-    navigator.push('item', { item, category });
+    const { item, category, navigation } = this.props;
+    navigation.navigate('item', { item, category });
   }
 
   render() {
-    let { item } = this.props;
+    const { item } = this.props;
     return (
       <ListItem
-          containerStyle={styles.item}
-          hideChevron
-          label={
-            <View style={styles.label}>
-              <Text style={styles.labelText}>{item.id}</Text>
-            </View>
-          }
-          onLongPress={this.openPage}
-          onPress={this.openPage}
-          subtitle={
-            <View style={styles.subtitle}>
-              <Text style={styles.subtitleText}>{item.difficulty}</Text>
-            </View>
-          }
-          title={item.title}
-          titleStyle={styles.itemTitle}
-          underlayColor="#1b2836"
+        containerStyle={styles.item}
+        hideChevron
+        label={
+          <View style={styles.label}>
+            <Text style={styles.labelText}>{item.id}</Text>
+          </View>
+        }
+        onLongPress={this.openPage}
+        onPress={this.openPage}
+        subtitle={
+          <View style={styles.subtitle}>
+            <Text style={styles.subtitleText}>{item.difficulty}</Text>
+          </View>
+        }
+        title={item.title}
+        titleStyle={styles.itemTitle}
+        underlayColor="#1b2836"
       />
     );
   }

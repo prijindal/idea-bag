@@ -1,17 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { NavigationStyles } from '@exponent/ex-navigation';
 import CategoryItem from '../../components/CategoryItem';
 
-import Layout from '../Layout';
+import Layout from '../../components/Layout';
 
 class Home extends Component {
   static propTypes = {
-    data: PropTypes.shape(),
-    navigator: PropTypes.shape(),
-  }
-
-  static route = {
-    styles: NavigationStyles.SlideVertical,
+    data: PropTypes.arrayOf().isRequired,
+    navigation: PropTypes.shape().isRequired,
   }
 
   state = {
@@ -19,8 +14,8 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    let { data } = this.props;
-    let bookmarks = [];
+    const { data } = this.props;
+    const bookmarks = [];
     data.forEach((category) => {
       category.items.forEach((item) => {
         if (item.bookmark) {
@@ -36,20 +31,21 @@ class Home extends Component {
   }
 
   render() {
-    let { navigator } = this.props;
-    let { bookmarks } = this.state;
+    const { navigation } = this.props;
+    const { bookmarks } = this.state;
     return (
       <Layout
-          navIconName="arrow-back"
-          navigator={navigator}
-          title="Bookmarks"
+        navigation={this.props.navigation}
+        enableBackButton
+        navigator={navigation}
+        title="Bookmarks"
       >
         {bookmarks && bookmarks.map(item =>
           <CategoryItem
-              category={item.category}
-              item={item}
-              key={item.id}
-              navigator={navigator}
+            category={item.category}
+            item={item}
+            key={item.id}
+            navigation={navigation}
           />,
         )}
       </Layout>

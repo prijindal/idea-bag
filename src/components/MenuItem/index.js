@@ -49,10 +49,10 @@ class MenuItem extends Component {
       categoryCount: PropTypes.number,
       description: PropTypes.string,
       items: PropTypes.arrayOf(PropTypes.object),
-    }),
-    navigator: PropTypes.shape({
+    }).isRequired,
+    navigation: PropTypes.shape({
       push: PropTypes.func,
-    }),
+    }).isRequired,
   }
 
   imageSource() {
@@ -62,29 +62,29 @@ class MenuItem extends Component {
   }
 
   openPage = () => {
-    let { category, navigator } = this.props;
-    navigator.push('category', { category });
+    const { category, navigation } = this.props;
+    navigation.navigate('category', { category });
   }
 
   render() {
-    let { category } = this.props;
+    const { category } = this.props;
     return (
       <ListItem
-          avatar={this.imageSource()}
-          avatarStyle={styles.avatar}
-          containerStyle={styles.item}
-          hideChevron
-          onLongPress={this.openPage}
-          onPress={this.openPage}
-          subtitle={
-            <View style={styles.subtitle}>
-              <Text style={styles.subtitleText}>Ideas: {category.categoryCount}</Text>
-              <Text style={styles.subtitleText}>{category.description}</Text>
-            </View>
-          }
-          title={category.categoryLbl}
-          titleStyle={styles.itemTitle}
-          underlayColor="#1b2836"
+        avatar={this.imageSource()}
+        avatarStyle={styles.avatar}
+        containerStyle={styles.item}
+        hideChevron
+        onLongPress={this.openPage}
+        onPress={this.openPage}
+        subtitle={
+          <View style={styles.subtitle}>
+            <Text style={styles.subtitleText}>Ideas: {category.categoryCount}</Text>
+            <Text style={styles.subtitleText}>{category.description}</Text>
+          </View>
+        }
+        title={category.categoryLbl}
+        titleStyle={styles.itemTitle}
+        underlayColor="#1b2836"
       />
     );
   }

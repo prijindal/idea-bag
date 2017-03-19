@@ -2,5 +2,10 @@
   <!-- inherit from the material theme -->
   <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <!-- Main theme colors -->
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">#ffb300</item>
+    <item name="colorPrimaryDark">#ffb300</item>
+    <!-- Details color -->
+    <item name="colorAccent">#ffb300</item>
   </style>
 </resources>

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Alert } from 'react-native';
-import Layout from '../Layout';
+import { Alert, ScrollView } from 'react-native';
+import Layout from '../../components/Layout';
 import MenuItem from '../../components/MenuItem';
 
 const actions = [
@@ -28,18 +28,18 @@ const actions = [
 
 class Home extends Component {
   static propTypes = {
-    data: PropTypes.arrayOf(MenuItem.propTypes.category),
-    navigator: PropTypes.shape(),
+    data: PropTypes.arrayOf(MenuItem.propTypes.category).isRequired,
+    navigation: PropTypes.shape({}).isRequired,
   }
 
   onActionSelected = (index) => {
-    let { navigator } = this.props;
+    const { navigation } = this.props;
     if (index === 0) {
-      navigator.push('bookmarks');
+      navigation.navigate('bookmarks');
     } else if (index === 1) {
-      navigator.push('submit');
+      navigation.navigate('submit');
     } else if (index === 2) {
-      navigator.push('about');
+      navigation.navigate('about');
     } else if (index === 3) {
       // Load Changelog
       Alert.alert(
@@ -55,20 +55,24 @@ class Home extends Component {
   }
 
   render() {
-    let { data } = this.props;
+    const { data } = this.props;
     return (
       <Layout
-          actions={actions}
-          onActionSelected={this.onActionSelected}
-          title="Idea Bag 2"
+        actions={actions}
+        onActionSelected={this.onActionSelected}
+        title="Idea Bag 2"
+        navigation={this.props.navigation}
+        enableBackButton={false}
       >
-        {data.map((category, idx) =>
-          <MenuItem
+        <ScrollView>
+          {data.map(category =>
+            <MenuItem
               category={category}
-              key={idx}
-              navigator={this.props.navigator}
-          />,
-        )}
+              key={category.categoryLbl}
+              navigation={this.props.navigation}
+            />,
+          )}
+        </ScrollView>
       </Layout>
     );
   }

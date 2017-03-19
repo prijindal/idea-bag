@@ -1,36 +1,40 @@
 import React, { Component, PropTypes } from 'react';
-import { NavigationStyles } from '@exponent/ex-navigation';
+import { ScrollView } from 'react-native';
 import MenuItem from '../../components/MenuItem';
 import CategoryItem from '../../components/CategoryItem';
 
-import Layout from '../Layout';
+import Layout from '../../components/Layout';
 
 class Home extends Component {
   static propTypes = {
-    category: MenuItem.propTypes.category,
-    navigator: PropTypes.shape(),
-  }
-
-  static route = {
-    styles: NavigationStyles.SlideHorizontal,
+    navigation: PropTypes.shape({
+      state: PropTypes.shape({
+        params: PropTypes.shape({
+          category: MenuItem.propTypes.category,
+        }),
+      }),
+    }).isRequired,
   }
 
   render() {
-    let { category, navigator } = this.props;
+    const { navigation } = this.props;
+    const { category } = navigation.state.params;
     return (
       <Layout
-          navIconName="arrow-back"
-          navigator={navigator}
-          title={category.categoryLbl}
+        enableBackButton
+        navigation={navigation}
+        title={category.categoryLbl}
       >
-        {category.items.map(item =>
-          <CategoryItem
+        <ScrollView>
+          {category.items.map(item =>
+            <CategoryItem
               category={category}
               item={item}
               key={item.id}
-              navigator={navigator}
-          />,
-        )}
+              navigation={navigation}
+            />,
+          )}
+        </ScrollView>
       </Layout>
     );
   }
