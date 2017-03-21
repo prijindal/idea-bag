@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { TextInput } from 'react-native';
 
 import theme from '../../../../themes/base-theme';
@@ -10,21 +10,17 @@ const styles = {
   },
 };
 
-class TaxInput extends Component {
-  static propTypes = {
-    setAmount: PropTypes.func.isRequired,
-  }
+const TaxInput = ({ setAmount }) => (
+  <TextInput
+    style={styles.textInput}
+    underlineColorAndroid={theme.whiteText}
+    keyboardType="numeric"
+    onChangeText={setAmount}
+  />
+);
 
-  render() {
-    return (
-      <TextInput
-        style={styles.textInput}
-        underlineColorAndroid={theme.whiteText}
-        keyboardType="numeric"
-        onChangeText={this.props.setAmount}
-      />
-    );
-  }
-}
+TaxInput.propTypes = {
+  setAmount: PropTypes.func.isRequired,
+};
 
 export default TaxInput;

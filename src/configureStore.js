@@ -10,8 +10,8 @@ export default function configureStore(onCompletion:()=>void):any {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const middlewares = [];
   if (process.env.NODE_ENV === 'development') {
-    const createLogger = require('redux-logger'); // eslint-disable-line global-require
-    const logger = createLogger();
+    // const createLogger = require('redux-logger'); // eslint-disable-line global-require
+    // const logger = createLogger();
     // middlewares.push(logger);
   }
   const enhancer = composeEnhancers(

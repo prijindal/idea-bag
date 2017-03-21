@@ -19,7 +19,7 @@ const styles = {
 
 class TaxInfo extends Component {
   static propTypes = {
-    amount: PropTypes.number,
+    amount: PropTypes.number.isRequired,
   }
 
   getTax() {

@@ -8,7 +8,7 @@ import Routes from './Routes';
 @connect(({ nav }) => ({
   nav,
 }))
-class Router extends Component {
+class Router extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     nav: PropTypes.shape({}).isRequired,
