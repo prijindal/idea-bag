@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Text } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Button } from 'react-native-elements';
 import Layout from '../../components/Layout';
 
 const styles = {
@@ -39,6 +39,12 @@ class Item extends Component {
     }
   }
 
+  openSubApp = () => {
+    const { item, navigation } = this.props;
+    const { category } = navigation.state.params;
+    navigation.navigate('subapp', { item, category });
+  }
+
   render() {
     const { item } = this.props;
     if (!item) return <Layout />;
@@ -69,6 +75,18 @@ class Item extends Component {
           titleStyle={styles.title}
         >
           <Text style={styles.description}>{item.description}</Text>
+        </Card>
+        <Card
+          containerStyle={styles.container}
+          dividerStyle={styles.divider}
+          title={item.title}
+          titleStyle={styles.title}
+        >
+          <Button
+            raised
+            title="Open App"
+            onPress={this.openSubApp}
+          />
         </Card>
       </Layout>
     );
