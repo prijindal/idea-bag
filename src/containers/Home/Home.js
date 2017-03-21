@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import Layout from '../../components/Layout';
 import MenuItem from '../../components/MenuItem';
@@ -26,7 +26,7 @@ const actions = [
   },
 ];
 
-class Home extends Component {
+class Home extends PureComponent {
   static propTypes = {
     data: PropTypes.arrayOf(MenuItem.propTypes.category).isRequired,
     navigation: PropTypes.shape({}).isRequired,

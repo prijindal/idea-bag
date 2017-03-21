@@ -1,5 +1,5 @@
 /* @flow */
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,7 @@ import Routes from './Routes';
 @connect(({ nav }) => ({
   nav,
 }))
-class Router extends Component { // eslint-disable-line react/prefer-stateless-function
+class Router extends PureComponent { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     nav: PropTypes.shape({}).isRequired,

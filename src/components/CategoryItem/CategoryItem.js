@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
@@ -37,44 +37,34 @@ const styles = {
   },
 };
 
-class CategoryItem extends Component {
-  static propTypes = {
-    item: PropTypes.shape({}).isRequired,
-    navigation: PropTypes.shape({
-      push: PropTypes.func,
-    }).isRequired,
-    category: PropTypes.shape({}).isRequired,
-  }
+const CategoryItem = ({ navigation, item, category }) => (
+  <ListItem
+    containerStyle={styles.item}
+    hideChevron
+    label={
+      <View style={styles.label}>
+        <Text style={styles.labelText}>{item.id}</Text>
+      </View>
+    }
+    onLongPress={this.openPage}
+    onPress={() => navigation.navigate('item', { item, category })}
+    subtitle={
+      <View style={styles.subtitle}>
+        <Text style={styles.subtitleText}>{item.difficulty}</Text>
+      </View>
+    }
+    title={item.title}
+    titleStyle={styles.itemTitle}
+    underlayColor="#1b2836"
+  />
+);
 
-  openPage = () => {
-    const { item, category, navigation } = this.props;
-    navigation.navigate('item', { item, category });
-  }
-
-  render() {
-    const { item } = this.props;
-    return (
-      <ListItem
-        containerStyle={styles.item}
-        hideChevron
-        label={
-          <View style={styles.label}>
-            <Text style={styles.labelText}>{item.id}</Text>
-          </View>
-        }
-        onLongPress={this.openPage}
-        onPress={this.openPage}
-        subtitle={
-          <View style={styles.subtitle}>
-            <Text style={styles.subtitleText}>{item.difficulty}</Text>
-          </View>
-        }
-        title={item.title}
-        titleStyle={styles.itemTitle}
-        underlayColor="#1b2836"
-      />
-    );
-  }
-}
+CategoryItem.propTypes = {
+  item: PropTypes.shape({}).isRequired,
+  navigation: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+  category: PropTypes.shape({}).isRequired,
+};
 
 export default CategoryItem;

@@ -1,5 +1,5 @@
 /* @flow */
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Dimensions, BackAndroid } from 'react-native';
@@ -12,7 +12,7 @@ import Router from '../Router';
     goBack: () => dispatch(NavigationActions.back()),
   }),
 )
-class AppNavigator extends Component {
+class AppNavigator extends PureComponent {
   static propTypes = {
     nav: PropTypes.shape({
       index: PropTypes.number,

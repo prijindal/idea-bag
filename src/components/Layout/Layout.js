@@ -1,5 +1,5 @@
 /* @flow */
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { View } from 'react-native';
 import { ToolbarAndroid } from 'react-native-vector-icons/MaterialIcons';
 
@@ -22,7 +22,7 @@ const styles = {
   },
 };
 
-class Layout extends Component {
+class Layout extends PureComponent {
   static defaultProps = {
     navigation: {},
     enableBackButton: false,

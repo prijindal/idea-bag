@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import CategoryItem from '../../components/CategoryItem';
 
 import Layout from '../../components/Layout';
 
-class Home extends Component {
+class Home extends PureComponent {
   static propTypes = {
     data: PropTypes.arrayOf().isRequired,
     navigation: PropTypes.shape().isRequired,

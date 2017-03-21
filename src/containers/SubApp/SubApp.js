@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { View } from 'react-native';
 import Layout from '../../components/Layout';
 import { getSubApp } from '../../subapps';
 
-class SubApp extends Component {
+class SubApp extends PureComponent {
   static propTypes = {
     navigation: PropTypes.shape({
       state: PropTypes.shape({

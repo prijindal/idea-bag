@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { View, Text } from 'react-native';
 
 import theme from '../../../../themes/base-theme';
@@ -17,7 +17,7 @@ const styles = {
   },
 };
 
-class TaxInfo extends Component {
+class TaxInfo extends PureComponent {
   static propTypes = {
     amount: PropTypes.number.isRequired,
   }

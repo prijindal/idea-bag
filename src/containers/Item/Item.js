@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { Text } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import Layout from '../../components/Layout';
@@ -23,7 +23,7 @@ const styles = {
   },
 };
 
-class Item extends Component {
+class Item extends PureComponent {
   static propTypes = {
     item: PropTypes.shape({}).isRequired,
     navigation: PropTypes.shape({}).isRequired,

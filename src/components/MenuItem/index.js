@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
@@ -41,7 +41,7 @@ const mapCategoryToImage = {
   Games: 'games',
 };
 
-class MenuItem extends Component {
+class MenuItem extends PureComponent {
   static propTypes = {
     category: PropTypes.shape({
       categoryLbl: PropTypes.string,
